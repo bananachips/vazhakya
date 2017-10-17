@@ -1,9 +1,0 @@
-d:\Work\Study\Projects\ank\lidgren-network-gen3\Samples\Chat\MafiaServer\obj\Debug\MafiaServer.csprojResolveAssemblyReference.cache
-d:\Work\Study\Projects\ank\lidgren-network-gen3\Samples\Chat\MafiaServer\bin\Debug\MafiaServer.exe.config
-d:\Work\Study\Projects\ank\lidgren-network-gen3\Samples\Chat\MafiaServer\bin\Debug\MafiaServer.exe
-d:\Work\Study\Projects\ank\lidgren-network-gen3\Samples\Chat\MafiaServer\bin\Debug\MafiaServer.pdb
-d:\Work\Study\Projects\ank\lidgren-network-gen3\Samples\Chat\MafiaServer\bin\Debug\Lidgren.Network.dll
-d:\Work\Study\Projects\ank\lidgren-network-gen3\Samples\Chat\MafiaServer\bin\Debug\Lidgren.Network.pdb
-d:\Work\Study\Projects\ank\lidgren-network-gen3\Samples\Chat\MafiaServer\bin\Debug\Lidgren.Network.xml
-d:\Work\Study\Projects\ank\lidgren-network-gen3\Samples\Chat\MafiaServer\obj\Debug\MafiaServer.exe
-d:\Work\Study\Projects\ank\lidgren-network-gen3\Samples\Chat\MafiaServer\obj\Debug\MafiaServer.pdb

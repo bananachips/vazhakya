@@ -11,12 +11,10 @@ using System.DirectoryServices;
 
 namespace MafiaClient.ViewModel
 {
+  public enum 
   public class DelegateCommand : ICommand
   {
     Action<object> _function;
-
-    private MafiaClientViewModel mafiaClientViewModel;
-
     public DelegateCommand(Action<object> _action)
     {
       _function = _action;
@@ -41,9 +39,11 @@ namespace MafiaClient.ViewModel
 
     public event PropertyChangedEventHandler PropertyChanged;
     public ICommand JoinCommand { get; private set; }
+    public ICommand CancelCommand { get; set; }
 
     private string _name;
     private string _host;
+    private string _status;
     public string Name
     {
       get { return _name; }
@@ -54,6 +54,7 @@ namespace MafiaClient.ViewModel
         {
           _name = value;
           RaisePropertyChanged("Name");
+          _mafiaClientModel._name = _name;
         }
       }
 
@@ -74,14 +75,35 @@ namespace MafiaClient.ViewModel
 
     }
 
+    public string StatusMessage
+    {
+      get { return _status; }
+
+      set
+      {
+        if (_status != value)
+        {
+          _status = value;
+          RaisePropertyChanged("StatusMessage");
+        }
+      }
+
+    }
+
     public MafiaClientViewModel()
     {
       JoinCommand = new DelegateCommand(OnJoin);
+      CancelCommand = new DelegateCommand(OnCancel);
+    }
+
+    private void OnCancel(object obj)
+    {
+      _mafiaClientModel.Disconnect();
     }
 
     public void OnJoin(object parameter)
     {
-      bool success = _mafiaClientModel.Connect(_host);
+      bool success = _mafiaClientModel.Connect(_host, StatusMessageCallback);
       Debug.WriteLine("On join called");
     }
 
@@ -91,6 +113,12 @@ namespace MafiaClient.ViewModel
       {
         PropertyChanged(this, new PropertyChangedEventArgs(property));
       }
+    }
+
+    private void StatusMessageCallback(string msg, int type)
+    {
+      StatusMessage = msg;
+      if (type == )
     }
   }
 }

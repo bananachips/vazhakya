@@ -15,10 +15,12 @@
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
+                
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Grid.Row="0" Text="Player Name" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,12"></TextBlock>
             <TextBox Grid.Column="1" Grid.Row="0" Margin="10,12" Height="30" Text="{Binding Name, UpdateSourceTrigger=LostFocus}"></TextBox>
@@ -33,7 +35,19 @@
                      Margin="10,12"
                      Height="30"
                      Text="{Binding ServerHost, UpdateSourceTrigger=LostFocus}"></TextBox>
+            <Button Grid.Row ="2" Grid.Column="0" Content=" Connect " HorizontalAlignment="Center" Margin="15" FontSize="16" FontWeight="Bold" Command="{Binding JoinCommand}"></Button>
+            <Button Grid.Row="2"
+                    Grid.Column="1"
+                    Content=" Cancel "
+                    HorizontalAlignment="Center"
+                    Margin="15"
+                    FontSize="16"
+                    FontWeight="Bold"
+                    Command="{Binding CancelCommand}"></Button>
         </Grid>
-        <Button Content="Join the game" HorizontalAlignment="Center" Margin="15" FontSize="16" FontWeight="Bold" Command="{Binding JoinCommand}"></Button>
+        
+        <TextBlock Text="{Binding StatusMessage}"
+                   Visibility="{Binding isVisible}"
+                   Margin="10,12" />
     </StackPanel>
 </UserControl>
