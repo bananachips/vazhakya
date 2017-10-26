@@ -124,7 +124,9 @@ namespace NamedPipeImageServer.ViewModels
         {
             while (_serverStream.IsConnected)
             {
-                ImageSource = await ListenAsync();
+                BitmapSource s = await ListenAsync();
+								if (s != null)
+									ImageSource = s;
             }
             //LoadFromBuffer();
         }
@@ -135,8 +137,9 @@ namespace NamedPipeImageServer.ViewModels
             {
                 if (_serverStream.IsConnected)
                 {
-                    ReadImageInfo();
-                    return ReadImage();
+                    if (ReadImageInfo())
+											return ReadImage();
+										return null;
                 }
                 else
                     return null;

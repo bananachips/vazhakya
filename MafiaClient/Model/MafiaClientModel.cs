@@ -1,20 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Lidgren.Network;
-using System.Threading;
+using System.Web.Script.Serialization;
+using CommonUtils;
 
 namespace MafiaClient.Model
 {
-  public class MafiaClientModel
+	public class MafiaClientModel
   {
     private NetClient _client;
     private Action<string, int> _statusCallback;
     private NetPeerConfiguration _config;
-    private int _port = 12345;
+    public int _port = 8000;
     public string _name = "lazybum";
+		private JavaScriptSerializer _jSerializer;
     public  string StatusMessage;
     public MafiaClientModel()
     {
@@ -22,7 +20,9 @@ namespace MafiaClient.Model
       _config.Port = 23456;
       _client = new NetClient(_config);
       _client.RegisterReceivedCallback(GotMessage);
-    }
+			_jSerializer = new JavaScriptSerializer();
+			_jSerializer.MaxJsonLength = Int32.MaxValue;
+		}
 
     
     public bool Connect(string host, Action<string, int> callback)
@@ -40,7 +40,7 @@ namespace MafiaClient.Model
       _client.Disconnect("");
     }
 
-    void OnMessage(string message, int type)
+    void OnMessage(string message, int type =1)
     {
       if (_statusCallback != null)
         _statusCallback(message, type);
@@ -50,8 +50,15 @@ namespace MafiaClient.Model
     public void SendMessage(string action, string data)
     {
       NetOutgoingMessage om = _client.CreateMessage();
-      om.Write(action);
-      om.Write(data);
+			string message = new KeyValue<string>() { key = action, value = data }.GetXml();
+			//Tuple<string, string> message = new Tuple<string, string>(action, data);
+			//XmlSerializer xmlSerializer = new XmlSerializer(message.GetType());
+			//StringWriter textWriter = new StringWriter();
+			//xmlSerializer.Serialize(textWriter, message);
+			//string zz =  textWriter.ToString();
+			//string m = _jSerializer.Serialize(message);
+      om.Write(message);
+      
       _client.SendMessage(om, NetDeliveryMethod.ReliableOrdered);
       OnMessage("Sending '" + action + ":" + data, 10);
       _client.FlushSendQueue();
@@ -77,7 +84,7 @@ namespace MafiaClient.Model
 
             if (status == NetConnectionStatus.Connected)
             {
-              OnMessage("Connected", NetConnectionStatus.Connected);
+              OnMessage("Connected");
               SendMessage("play", "data");
             }
             if (status == NetConnectionStatus.Disconnected)

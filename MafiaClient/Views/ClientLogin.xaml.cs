@@ -24,5 +24,16 @@ namespace MafiaClient.Views
         {
             InitializeComponent();
         }
+
+    private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+    {
+      e.Handled = !IsTextAllowed(e.Text);
     }
+
+    private Boolean IsTextAllowed(String text)
+    {
+      return Array.TrueForAll<Char>(text.ToCharArray(),
+          delegate (Char c) { return Char.IsDigit(c) || Char.IsControl(c); });
+    }
+  }
 }

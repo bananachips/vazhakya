@@ -85,31 +85,32 @@ int DisplayImage(int width, int height, int channels, int format, byte* pixelDat
 
   if(!fSuccess)
   {
-    clientPipeHandle = INVALID_HANDLE_VALUE;
     CloseHandle(clientPipeHandle);
+    clientPipeHandle = INVALID_HANDLE_VALUE;
     return -1;
   }
 
   if (!WriteFile(clientPipeHandle, &height, sizeof(height), &cbWritten, NULL))
   {
-    clientPipeHandle = INVALID_HANDLE_VALUE;
     CloseHandle(clientPipeHandle);
+    clientPipeHandle = INVALID_HANDLE_VALUE;
     return -1;
   }
 
   if (!WriteFile(clientPipeHandle, &channels, sizeof(channels), &cbWritten, NULL))
   {
-    clientPipeHandle = INVALID_HANDLE_VALUE;
     CloseHandle(clientPipeHandle);
+    clientPipeHandle = INVALID_HANDLE_VALUE;
     return -1;
   }
 	if (!WriteFile(clientPipeHandle, pixelData, width * height * channels, &cbWritten, NULL))
   {
-    clientPipeHandle = INVALID_HANDLE_VALUE;
     CloseHandle(clientPipeHandle);
+    clientPipeHandle = INVALID_HANDLE_VALUE;
     return -1;
   }
   CloseHandle(clientPipeHandle);
+  clientPipeHandle = INVALID_HANDLE_VALUE;
 	return 1;
 }
 

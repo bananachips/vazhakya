@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:viewModel ="clr-namespace:MafiaClient.ViewModel"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" d:DesignWidth="443">
     <UserControl.DataContext>
         <viewModel:MafiaClientViewModel></viewModel:MafiaClientViewModel>
@@ -13,6 +14,7 @@
         <TextBlock Text ="Mafia" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold"></TextBlock>
         <Grid>
             <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
@@ -35,8 +37,32 @@
                      Margin="10,12"
                      Height="30"
                      Text="{Binding ServerHost, UpdateSourceTrigger=LostFocus}"></TextBox>
-            <Button Grid.Row ="2" Grid.Column="0" Content=" Connect " HorizontalAlignment="Center" Margin="15" FontSize="16" FontWeight="Bold" Command="{Binding JoinCommand}"></Button>
-            <Button Grid.Row="2"
+            <TextBlock Grid.Column="0"
+                       Grid.Row="2"
+                       Text="Mafia Server Port"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"
+                       Margin="10,12"></TextBlock>
+            <TextBox  Grid.Column="1"
+                     Grid.Row="2"
+                     Margin="10,12"
+                     Height="30">
+
+                <Binding Path="ServerPort"
+                             Mode="TwoWay"
+                             UpdateSourceTrigger="LostFocus"
+                             ConverterParameter="Int32"
+                             ValidatesOnNotifyDataErrors="True"
+                             ValidatesOnDataErrors="True"
+                             NotifyOnValidationError="True">
+                    <Binding.ValidationRules>
+                        <viewModel:NumericValidationRule ValidationType="{x:Type system:Int32}"
+                                                         ValidatesOnTargetUpdated="True" />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox>
+            <Button Grid.Row ="3" Grid.Column="0" Content=" Connect " HorizontalAlignment="Center" Margin="15" FontSize="16" FontWeight="Bold" Command="{Binding JoinCommand}"></Button>
+            <Button Grid.Row="3"
                     Grid.Column="1"
                     Content=" Cancel "
                     HorizontalAlignment="Center"
@@ -48,6 +74,6 @@
         
         <TextBlock Text="{Binding StatusMessage}"
                    Visibility="{Binding isVisible}"
-                   Margin="10,12" />
+                   Margin="10,12"  />
     </StackPanel>
 </UserControl>
