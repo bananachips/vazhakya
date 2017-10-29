@@ -10,6 +10,8 @@
         <viewModel:PlayManagerViewModel></viewModel:PlayManagerViewModel>
     </UserControl.DataContext>
     <StackPanel>
-        <TextBlock Text="Player"></TextBlock>
+        <DataGrid x:Name="PlayerListBox"
+                  ItemsSource="{Binding PlayerList}"
+                  ColumnWidth="*"></DataGrid>
     </StackPanel>
 </UserControl>
