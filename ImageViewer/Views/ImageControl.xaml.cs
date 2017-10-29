@@ -15,26 +15,20 @@ using System.Windows.Shapes;
 
 namespace ImageViewer.Views
 {
-	/// <summary>
-	/// Interaction logic for ImageControl.xaml
-	/// </summary>
-	public partial class ImageControl : UserControl
-	{
-		public ImageControl()
-		{
-			InitializeComponent();
-		}
+    /// <summary>
+    /// Interaction logic for ImageControl.xaml
+    /// </summary>
+    public partial class ImageControl : UserControl
+    {
+        public ImageControl()
+        {
+            InitializeComponent();
+        }
 
-		private void Image_MouseDown(object sender, MouseButtonEventArgs e)
-		{
-			var imageControl = this.ImageX;
-			var coord = Mouse.GetPosition(this.ImageX);
-			var dc = this.DataContext as ImageViewer.ViewModels.ImageViewModel;
-			
-			var x = Math.Floor(coord.X * imageControl.Source.Width / imageControl.ActualWidth);
-			var y = Math.Floor(coord.Y * imageControl.Source.Height / imageControl.ActualHeight);
-			if (dc != null)
-				dc.Coord = String.Format("{0}:{1}", x, y);
-		}
-	}
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var dc = this.DataContext as ImageViewer.ViewModels.ImageViewModel;
+            dc.Update();
+        }
+    }
 }
