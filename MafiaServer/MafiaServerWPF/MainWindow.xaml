@@ -5,9 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MafiaServerWPF"
         xmlns:views="clr-namespace:MafiaServerWPF.Views"
+        xmlns:viewModels="clr-namespace:MafiaServerWPF.ViewModels"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
+
+    <Window.DataContext>
+        <viewModels:ApplicationViewModel></viewModels:ApplicationViewModel>
+    </Window.DataContext>
     <Grid>
-        <views:ServerManager></views:ServerManager>
+        <views:ApplicationView></views:ApplicationView>
     </Grid>
+    
 </Window>

@@ -23,6 +23,8 @@ namespace MafiaServerWPF
     public MainWindow()
     {
       InitializeComponent();
+      //DataContext = new MafiaServerWPF.ViewModels.ApplicationViewModel();
+
     }
   }
 }

@@ -15,16 +15,14 @@ using System.Windows.Shapes;
 
 namespace MafiaServerWPF.Views
 {
-  /// <summary>
-  /// Interaction logic for ServerManager.xaml
-  /// </summary>
-  public partial class ServerManager : UserControl
-  {
-    public ServerManager()
+    /// <summary>
+    /// Interaction logic for PlayManager.xaml
+    /// </summary>
+    public partial class PlayManager : UserControl
     {
-      InitializeComponent();
+        public PlayManager()
+        {
+            InitializeComponent();
+        }
     }
-
-   
-  }
 }

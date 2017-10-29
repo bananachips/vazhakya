@@ -13,18 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MafiaServerWPF.Views
+namespace TestWPF.Views
 {
-  /// <summary>
-  /// Interaction logic for ServerManager.xaml
-  /// </summary>
-  public partial class ServerManager : UserControl
-  {
-    public ServerManager()
+    /// <summary>
+    /// Interaction logic for RedView.xaml
+    /// </summary>
+    public partial class RedView : UserControl
     {
-      InitializeComponent();
+        public RedView()
+        {
+            InitializeComponent();
+        }
     }
-
-   
-  }
 }

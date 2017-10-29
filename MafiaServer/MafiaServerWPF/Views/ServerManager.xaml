@@ -5,15 +5,74 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MafiaServerWPF.Views"
              xmlns:viewModel="clr-namespace:MafiaServerWPF.ViewModels"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <UserControl.DataContext>
+    <!--<UserControl.DataContext>
         <viewModel:ServerViewModel></viewModel:ServerViewModel>
-    </UserControl.DataContext>
+    </UserControl.DataContext>-->
 
-    
-    <StackPanel>
-        <!--<TextBlock Text="Listening.." VerticalAlignment="Center" Margin="15, 20"></TextBlock>-->
+    <StackPanel Margin="20"
+                Background="#FF3F7072">
+        <TextBlock Text ="Mafia Server Manager" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold"></TextBlock>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0"
+                       Grid.Row="1"
+                       Text="Mafia Server Port"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"
+                       Margin="10,12"></TextBlock>
+            <TextBox  Grid.Column="1"
+                     Grid.Row="1"
+                     Margin="10,12"
+                     Height="30">
+
+                <Binding Path="Port"
+                             Mode="TwoWay"
+                             UpdateSourceTrigger="LostFocus"
+                             ConverterParameter="Int32"
+                             ValidatesOnNotifyDataErrors="True"
+                             ValidatesOnDataErrors="True"
+                             NotifyOnValidationError="True">
+                    <Binding.ValidationRules>
+                        <viewModel:NumericValidationRule ValidationType="{x:Type system:Int32}"
+                                                         ValidatesOnTargetUpdated="True" />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox>
+            <Button Grid.Row ="3" Grid.Column="0" Content=" Start " 
+                    HorizontalAlignment="Center" Margin="15" FontSize="16" FontWeight="Bold" 
+                    Command="{Binding StartCommand}"></Button>
+            <Button Grid.Row ="3" Grid.Column="1" Content=" Switch " 
+                    HorizontalAlignment="Center" Margin="15" FontSize="16" FontWeight="Bold" 
+                    Command="{Binding SwitchCommand}"></Button>
+            <!--<Button Grid.Row="3"
+                    Grid.Column="1"
+                    Content=" Cancel "
+                    HorizontalAlignment="Center"
+                    Margin="15"
+                    FontSize="16"
+                    FontWeight="Bold"
+                    Command="{Binding StartCommand}"></Button>-->
+        </Grid>
+
+        <!--<TextBlock Text="{Binding StatusMessage}"
+                   Visibility="{Binding isVisible}"
+                   Margin="10,12"  />-->
+    </StackPanel>
+    <!--<StackPanel>
+        --><!--<TextBlock Text="Listening.." VerticalAlignment="Center" Margin="15, 20"></TextBlock>--><!--
         <Grid Margin="10,10">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
@@ -29,5 +88,5 @@
         <Button Content="Start"
                 Width="100"
                 Command="{Binding StartCommand}"></Button>
-    </StackPanel>
+    </StackPanel>-->
 </UserControl>
