@@ -13,10 +13,11 @@ namespace MafiaServerWPF.ViewModels
 	{
 		private string _test;
 		private bool _isVisible = true;
-		private PlayManagerModel _playManagerModel = new PlayManagerModel();
+		private PlayManagerModel _playManagerModel;
 
-		public PlayManagerViewModel()
+		public PlayManagerViewModel(PlayManagerModel pm)
 		{
+			_playManagerModel = pm;
 			PlayerList = new List<PlayerInfo>();
 			PlayerList.Add(new PlayerInfo() { Name = "Anjali" });
 			PlayerList.Add(new PlayerInfo() { Name = "Sachin" });

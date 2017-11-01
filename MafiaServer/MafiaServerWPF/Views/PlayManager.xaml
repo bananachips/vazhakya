@@ -6,9 +6,9 @@
              xmlns:viewModel="clr-namespace:MafiaServerWPF.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <UserControl.DataContext>
+    <!--<UserControl.DataContext>
         <viewModel:PlayManagerViewModel></viewModel:PlayManagerViewModel>
-    </UserControl.DataContext>
+    </UserControl.DataContext>-->
     <StackPanel>
         <DataGrid x:Name="PlayerListBox"
                   ItemsSource="{Binding PlayerList}"

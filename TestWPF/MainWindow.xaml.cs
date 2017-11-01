@@ -45,10 +45,7 @@ namespace TestWPF
             items.Add(new PlayerInfo() { Name = "Sachin" });
             items.Add(new PlayerInfo() { Name = "Meera" });
            // List<String> items = new List<String>() { "asad", "ASdas" };
-
-
-
-                        //PlayerListBox.ItemsSource = items;
+					 PlayerListBox.ItemsSource = items;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

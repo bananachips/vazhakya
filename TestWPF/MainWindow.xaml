@@ -32,7 +32,7 @@
         </Border>
     </Canvas>-->
     <!-- Multiple Views-->
-    <Window.Resources>
+    <!--<Window.Resources>
         <DataTemplate DataType="{x:Type viewModel:BlueVM}" >
             <views:BlueView DataContext="{Binding}"></views:BlueView>
         </DataTemplate>
@@ -51,8 +51,8 @@
         </ContentControl>
         <Button Grid.Row="1" Content="Test" Width="100" Height="50" Click="Button_Click"></Button>
         
-    </Grid>
-    <!-- Data Grid Display
+    </Grid>-->
+    <!-- Data Grid Display-->
     <Window.Resources>
         <DataTemplate x:Key="PlayersTemplate" >
             <Grid Margin="4" ShowGridLines="True">
@@ -68,8 +68,8 @@
         </DataTemplate>
     </Window.Resources>
     <Grid Margin="10">
-        -->
-    <!--<ListBox x:Name="PlayerListBox" ItemsSource="{Binding}" ItemTemplate="{StaticResource PlayersTemplate}">
+
+        <!--<ListBox x:Name="PlayerListBox" ItemsSource="{Binding}" ItemTemplate="{StaticResource PlayersTemplate}">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="{x:Type ListBoxItem}">
                     <Setter Property="BorderBrush" Value="LightGray" />
@@ -77,10 +77,10 @@
                 </Style>
             </ListBox.ItemContainerStyle>
         </ListBox>-->
-    <!--
 
-        <DataGrid x:Name="PlayerListBox" ItemsSource="{Binding}" ColumnWidth="*" ></DataGrid>
-        
-        
-    </Grid>-->
+        <DataGrid x:Name="PlayerListBox"
+                  ItemsSource="{Binding}"
+                  ColumnWidth="*"></DataGrid>
+
+    </Grid>
 </Window>

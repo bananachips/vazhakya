@@ -18,8 +18,9 @@ namespace MafiaServerWPF.Models
 	}
 
 	public delegate void PlayerJoinedHandler(object sender, EventArgs args);
-	
-	internal class ServerModel
+	public delegate void ServerStartedHandler(object sender, EventArgs args);
+
+	public class ServerModel
 	{
 		private static List<ConnectionInfo> _connectionInfoList = new List<ConnectionInfo>();
 		NetServer _server;
@@ -30,13 +31,11 @@ namespace MafiaServerWPF.Models
 		public string Status { get; private set; }
 
 		public event PlayerJoinedHandler PlayerJoined;
+		public event ServerStartedHandler ServerStarted;
 		public ServerModel()
 		{
-
-
 			_jSerializer = new JavaScriptSerializer();
 			_jSerializer.MaxJsonLength = Int32.MaxValue;
-
 		}
 
 		~ServerModel()
@@ -60,6 +59,7 @@ namespace MafiaServerWPF.Models
 				RunListener();
 				Debug.WriteLine("Server is listening");
 				Status = "Server is listening for connections";
+				ServerStarted?.Invoke(null, null);
 				return true;
 			}
 			catch (Exception ex)

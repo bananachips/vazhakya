@@ -25,7 +25,7 @@ namespace MafiaServerWPF.Models
 		public List<PlayerInfo> _playerList;
 		
 		ServerModel _server;
-		PlayManagerModel(ServerModel server)
+		public PlayManagerModel(ServerModel server)
 		{
 			_server = server;
 			_server.PlayerJoined += _server_PlayerJoined;

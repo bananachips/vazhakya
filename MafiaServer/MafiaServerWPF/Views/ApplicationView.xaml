@@ -9,15 +9,21 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
+        <!--This implies that if the data type is serverviewmodel then 
+        show the server manager view-->
         <DataTemplate DataType="{x:Type ViewModels:ServerViewModel}">
             <Views:ServerManager></Views:ServerManager>
         </DataTemplate>
+        <!--This implies that if the data type is PlayManagerViewModel then 
+        show the PlayManager view-->
         <DataTemplate DataType="{x:Type ViewModels:PlayManagerViewModel}">
             <Views:PlayManager></Views:PlayManager>
         </DataTemplate>
     </UserControl.Resources>
    
     <Grid>
+        <!--The contentcontrol is created based on what the content is bound to-->
         <ContentControl Content="{Binding CurrentViewModel}"></ContentControl>
+        <!--<ContentControl Content="Hello"></ContentControl>-->
     </Grid>
 </UserControl>
