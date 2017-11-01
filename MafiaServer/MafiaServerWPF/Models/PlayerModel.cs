@@ -18,6 +18,18 @@ namespace MafiaServerWPF.Models
 		public string IP { get; set; }
 		public int Port { get; set; }
 
+		//helps in remove operation in list
+		public override bool Equals(object obj)
+		{
+			// Check for null  
+			if (ReferenceEquals(obj, null))
+				return false;
+			// Check for same reference  
+			if (ReferenceEquals(this, obj))
+				return true;
+			var player = (PlayerInfo)obj;
+			return (this.Name == player.Name && player.IP == this.IP && Port == player.Port);
+		}
 	}
 
 	public class PlayManagerModel
