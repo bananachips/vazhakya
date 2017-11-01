@@ -17,7 +17,7 @@ namespace MafiaClient.Model
     public MafiaClientModel()
     {
       _config = new NetPeerConfiguration("Mafia");
-      _config.Port = 23456;
+     // _config.Port = 23456;
       _client = new NetClient(_config);
       _client.RegisterReceivedCallback(GotMessage);
 			_jSerializer = new JavaScriptSerializer();
