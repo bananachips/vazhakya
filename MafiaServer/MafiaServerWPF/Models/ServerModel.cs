@@ -18,6 +18,7 @@ namespace MafiaServerWPF.Models
 	}
 
 	public delegate void PlayerJoinedHandler(object sender, EventArgs args);
+	public delegate void PlayerLeftHandler(object sender, EventArgs args);
 	public delegate void ServerStartedHandler(object sender, EventArgs args);
 
 	public class ServerModel
@@ -31,6 +32,7 @@ namespace MafiaServerWPF.Models
 		public string Status { get; private set; }
 
 		public event PlayerJoinedHandler PlayerJoined;
+		public event PlayerLeftHandler PlayerLeft;
 		public event ServerStartedHandler ServerStarted;
 		public ServerModel()
 		{
@@ -79,12 +81,14 @@ namespace MafiaServerWPF.Models
 				ConnectionInfo info = new ConnectionInfo { Name = name, Connection = connection };
 				_connectionInfoList.Add(info);
 				PlayerJoined?.Invoke(info, null);
+				
 			}
 			else if (status == NetConnectionStatus.Disconnected)
 			{
 				ConnectionInfo info = _connectionInfoList.Find((x) => { return x.Connection == connection; });
 				Output(info.Name + " @" + connection.RemoteEndPoint + " has disconnected");
 				_connectionInfoList.Remove(info);
+				PlayerLeft?.Invoke(info, null);
 				// _connectionInfoList.RemoveAll((x)=> { return x.Connection == connection;});
 			}
 

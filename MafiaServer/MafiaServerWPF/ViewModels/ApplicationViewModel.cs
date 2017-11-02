@@ -34,7 +34,7 @@ namespace MafiaServerWPF.ViewModels
 			_serverVM = new ServerViewModel(_serverModel);
 			//_serverVM.StartCommand = new DelegateCommand(OnStart);
 			_playManagerModel = new PlayManagerModel(_serverModel);
-			_playManagerVM = new PlayManagerViewModel(_playManagerModel);
+			_playManagerVM = new PlayManagerViewModel(_playManagerModel, _serverModel);
 			_serverModel.ServerStarted += _server_started;
 			CurrentViewModel = _serverVM;
 			

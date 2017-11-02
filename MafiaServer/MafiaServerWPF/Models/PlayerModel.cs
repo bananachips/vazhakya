@@ -13,10 +13,14 @@ namespace MafiaServerWPF.Models
 			Name = "";
 			IP = "localhost";
 			Port = 8000;
+			Role = "Not assigned";
 		}
+
 		public string Name { get; set; }
 		public string IP { get; set; }
 		public int Port { get; set; }
+
+		public string Role { get; set; }
 
 		//helps in remove operation in list
 		public override bool Equals(object obj)
@@ -40,15 +44,8 @@ namespace MafiaServerWPF.Models
 		public PlayManagerModel(ServerModel server)
 		{
 			_server = server;
-			_server.PlayerJoined += _server_PlayerJoined;
-		}
-
-		private void _server_PlayerJoined(object sender, EventArgs args)
-		{
 			
-
 		}
-
-		
+			
 	}
 }

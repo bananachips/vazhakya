@@ -1,17 +1,62 @@
 ﻿<UserControl x:Class="MafiaServerWPF.Views.PlayManager"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:viewModel="clr-namespace:MafiaServerWPF.ViewModels"
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             mc:Ignorable="d"
+             d:DesignHeight="278.483"
+             d:DesignWidth="467.156">
     <!--<UserControl.DataContext>
         <viewModel:PlayManagerViewModel></viewModel:PlayManagerViewModel>
     </UserControl.DataContext>-->
-    <StackPanel>
-        <DataGrid x:Name="PlayerListBox"
+    <Grid Background="SlateGray" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid Height="150"  Margin="10, 10, 10, 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions >
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Column="0"
+                       Grid.Row="0"
+                       Text="Number of Mafia"/>
+            <TextBox Grid.Column="1" VerticalAlignment="Center"
+                     Margin="2,2"
+                     Text="{Binding NumMafias}"></TextBox>
+            <TextBlock Grid.Column="0"
+                       Grid.Row="1"
+                       Text="Doctor"></TextBlock>
+            <CheckBox Grid.Column="1"
+                      Grid.Row="1"
+                      IsChecked="{Binding HasDoctor}"></CheckBox>
+            <TextBlock Grid.Column="0"
+                       Grid.Row="2"
+                       Text="Detective"></TextBlock>
+            <CheckBox Grid.Column="1"
+                      Grid.Row="2" IsChecked="{Binding HasDetective}"></CheckBox>
+            <TextBlock Grid.Column="0"
+                       Grid.Row="3"
+                       Text="Joker"></TextBlock>
+            <CheckBox Grid.Column="1"
+                      Grid.Row="3" IsChecked="{Binding HasJoker}"></CheckBox>
+            <Button Grid.Row="4" Grid.ColumnSpan="2" Content="Play" Height="30" Width="50" Command="{Binding PlayCommand}"></Button>
+
+        </Grid>
+
+        <DataGrid Grid.Column="1" Background="SlateGray"
+                  x:Name="PlayerListBox"
                   ItemsSource="{Binding PlayerList}"
                   ColumnWidth="*"></DataGrid>
-    </StackPanel>
+    </Grid>
 </UserControl>
