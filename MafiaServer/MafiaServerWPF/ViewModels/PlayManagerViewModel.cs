@@ -79,13 +79,38 @@ namespace MafiaServerWPF.ViewModels
 			IEnumerable<PlayerInfo> temp =(IEnumerable<PlayerInfo>)PlayerList.GetEnumerator();
 			List<PlayerInfo> p =  temp.ToList();
 			CommonUtils.Utilities.Shuffle(ref p);
-			
-			//Create Mafia List
-			//Create Villager List
-			//Create SpecialChar List
 
-			for (int i = 0; i < PlayerList.Count; ++i)
+			int i = 0;
+			do
 			{
+				//Create Mafia List
+				for (i = 0; i < NumMafias; ++i)
+				{
+					p[i].Role = "mafia";
+					Mafias.Add(p[i]);
+				}
+				//Create SpecialChar List
+				if (HasDoctor)
+				{
+					p[i].Role = "doctor";
+					Specialists.Add(p[i]);
+				}
+
+				if (HasDetective)
+				{
+					p[i].Role = "detective";
+					Specialists.Add(p[i]);
+				}
+
+
+				if (HasDoctor)
+				{
+					p[i].Role = "doctor";
+					Specialists.Add(p[i]);
+				}
+
+
+				//Create Villager List
 
 
 			}
