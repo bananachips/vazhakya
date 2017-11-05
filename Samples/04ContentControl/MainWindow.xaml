@@ -1,0 +1,21 @@
+﻿<Window x:Class="_04ContentControl.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Views="clr-namespace:_04ContentControl"
+        xmlns:ViewModels="clr-namespace:MyViewModels"
+        Title="MainWindow" Height="350" Width="525">
+
+    <Window.DataContext>
+        <ViewModels:TestVM></ViewModels:TestVM>
+    </Window.DataContext>
+
+    
+    <DataTemplate DataType="{x:Type ViewModels:TestVM}">
+        <Views:TestUserControl></Views:TestUserControl>
+    </DataTemplate>
+
+    
+    <Grid>
+        <ContentControl Content="{Binding}" ></ContentControl>
+    </Grid>
+</Window>

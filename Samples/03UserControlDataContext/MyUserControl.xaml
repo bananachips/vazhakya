@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="_03UserControlDataContext.MyUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:VM="clr-namespace:MyViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.DataContext>
+        <!-- set the vm to the data context. add namespace-->
+        <VM:MyUserControlVM></VM:MyUserControlVM>
+    </UserControl.DataContext>
+    <Grid Background="Azure">
+        <!-- The data context has to be set -->
+        <TextBlock Text="{Binding Message}"></TextBlock>
+    </Grid>
+</UserControl>

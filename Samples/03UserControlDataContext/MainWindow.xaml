@@ -1,0 +1,34 @@
+﻿<Window x:Class="_03UserControlDataContext.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Views="clr-namespace:_03UserControlDataContext"
+        xmlns:ViewModels="clr-namespace:MyViewModels"
+        Title="MainWindow" Height="350" Width="525">
+    <Window.DataContext>
+        <ViewModels:MyAnotherVM></ViewModels:MyAnotherVM>
+    </Window.DataContext>
+    <!--<Window.Resources>
+        <DataTemplate DataType="{x:Type ViewModels:MyAnotherVM}">
+            <Views:AnotherUserControl></Views:AnotherUserControl>
+        </DataTemplate>
+    </Window.Resources>-->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <!--Put the user control here. Put the user controls namespace as well
+            The data context for this control is set in the user control xaml-->
+        <Views:MyUserControl Grid.Row="0"></Views:MyUserControl>
+        <!-- the data context for this is not set in the user control xaml the window.datacontext is used here-->
+        <Views:AnotherUserControl Grid.Row="1"></Views:AnotherUserControl>
+        <!-- this shows content as hello world-->
+        <ContentControl Content="Hello world" Grid.Row="2"></ContentControl>
+        <!-- this shows the name of the data context as string. This needs a data template for it to show.
+        Uncomment Windows.Resources to see the effect. The data template must be inside windows.resources-->
+        <ContentControl Content="{Binding}" Grid.Row="3"></ContentControl>
+    </Grid>
+</Window>
