@@ -5,10 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:viewModel ="clr-namespace:MafiaClient.ViewModel"
              xmlns:system="clr-namespace:System;assembly=mscorlib"
-             mc:Ignorable="d" d:DesignWidth="443">
-    <UserControl.DataContext>
-        <viewModel:MafiaClientViewModel></viewModel:MafiaClientViewModel>
-    </UserControl.DataContext>
+             mc:Ignorable="d" d:DesignWidth="500" d:DesignHeight="500">
+    
     <StackPanel Margin="20"
                 Background="#FF3F7072">
         <TextBlock Text ="Mafia" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold"></TextBlock>

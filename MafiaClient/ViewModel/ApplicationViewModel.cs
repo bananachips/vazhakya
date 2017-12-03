@@ -23,15 +23,18 @@ namespace MafiaClient.ViewModel
     public ApplicationViewModel()
     {
       _clientModel = new MafiaClientModel();
-      CurrentViewModel = _clientVM = new MafiaClientViewModel(_clientModel);
+      CurrentViewModel = _clientVM = new ClientLoginViewModel(_clientModel);
       _clientModel.RoleSetEvent += _clientModel_RoleSetEvent;
 
     }
 
     private void _clientModel_RoleSetEvent(object sender, EventArgs args)
     {
-      if (sender as string == "mafia")
+      string role = sender as string;
+      
+      if (String.Compare(role, "mafia", true) == 0)
       {
+        CurrentViewModel = _roleVM = new VillagerViewModel();
 
       }
     }

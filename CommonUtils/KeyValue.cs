@@ -9,7 +9,7 @@ using System.Xml.Serialization;
 namespace CommonUtils
 {
 	//static XMLSer
-	[Serializable()]
+	[Serializable]
 	public class KeyValue<T>
 	{
 		public string key;
@@ -20,11 +20,12 @@ namespace CommonUtils
 
 		}
 
-		public KeyValue(SerializationInfo info, StreamingContext ctxt)
-		{
-			key = (String)info.GetValue("key", typeof(string));
-			value = (T)info.GetValue("value", typeof(T));
-		}
+    //apaprently not required
+    //public KeyValue(SerializationInfo info, StreamingContext ctxt)
+    //{
+    //  key = (String)info.GetValue("key", typeof(string));
+    //  value = (T)info.GetValue("value", typeof(T));
+    //}
 		
 		public KeyValue(string xml)
 		{
@@ -35,12 +36,13 @@ namespace CommonUtils
 			key = t.key;
 			value = t.value;
 		}
-		//Serialization function.
-		public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
-		{
-			info.AddValue("key", key);
-			info.AddValue("value", value);
-		}
+
+		//Serialization function. apparently not required
+    //public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
+    //{
+    //  info.AddValue("key", key);
+    //  info.AddValue("value", value);
+    //}
 
 		public string GetXml()
 		{
@@ -56,4 +58,42 @@ namespace CommonUtils
 			XmlSerializer _xmlSerializer; 
 		
 	}
+
+  [Serializable]
+  public class PropertyMap
+  {
+    public string key;
+    public string value;
+
+    public PropertyMap()
+    {
+
+    }
+
+    public PropertyMap(string xml)
+    {
+      if (_xmlSerializer == null)
+        _xmlSerializer = new XmlSerializer(GetType());
+      StringReader textReader = new StringReader(xml);
+      PropertyMap t = (PropertyMap)_xmlSerializer.Deserialize(textReader);
+      key = t.key;
+      value = t.value;
+    }
+    //Serialization function.
+
+    public string GetXml()
+    {
+      if (_xmlSerializer == null)
+        _xmlSerializer = new XmlSerializer(GetType());
+
+      StringWriter textWriter = new StringWriter();
+      _xmlSerializer.Serialize(textWriter, this);
+      return textWriter.ToString();
+    }
+
+    private
+      XmlSerializer _xmlSerializer;
+
+  }
+
 }

@@ -55,11 +55,15 @@
     </ApplicationDefinition>
     <Compile Include="ViewModels\BlueVM.cs" />
     <Compile Include="ViewModels\RedVM.cs" />
+    <Compile Include="ViewModels\VoteViewModel.cs" />
     <Compile Include="Views\BlueView.xaml.cs">
       <DependentUpon>BlueView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RedView.xaml.cs">
       <DependentUpon>RedView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Vote.xaml.cs">
+      <DependentUpon>Vote.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -78,6 +82,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\RedView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Vote.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -108,6 +116,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CommonUtils\CommonUtils.csproj">
+      <Project>{12981a26-0f5a-408e-8bc9-8881a886117d}</Project>
+      <Name>CommonUtils</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

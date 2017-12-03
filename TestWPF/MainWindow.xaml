@@ -78,9 +78,10 @@
             </ListBox.ItemContainerStyle>
         </ListBox>-->
 
-        <DataGrid x:Name="PlayerListBox"
+        <!--<DataGrid x:Name="PlayerListBox"
                   ItemsSource="{Binding}"
-                  ColumnWidth="*"></DataGrid>
+                  ColumnWidth="*"></DataGrid>-->
+        <views:Vote></views:Vote>
 
     </Grid>
 </Window>

@@ -22,6 +22,11 @@ namespace MafiaServerWPF.Models
 
 		public string Role { get; set; }
 
+    public void SetConnectionInfo(ConnectionInfo info)
+    {
+
+    }
+    public ConnectionInfo ConnectionInfo { get; set; }
 		//helps in remove operation in list
 		public override bool Equals(object obj)
 		{

@@ -19,7 +19,7 @@ namespace Test
 			
 		}
 
-		void SerializationTest()
+		static void SerializationTest()
 		{
 			KeyValue<int> x = new KeyValue<int> { key = "age", value = 100 };
 			string st = x.GetXml();
@@ -39,14 +39,29 @@ namespace Test
 			XmlSerializer xml = new XmlSerializer(x.GetType());
 			KeyValue<int> t = (KeyValue<int>)xmlSerializer.Deserialize(textReader);
 		}
+
+    
+    
 		static void Main(string[] args)
-		{
-			do
-			{
-				TestRandomUtil();
-				Console.WriteLine("Press q to stop");
-			}
-			while (Console.Read() != 'q');
+    {
+      SerializationTest();
+      PropertyMap test = new PropertyMap { key = "Test", value = "testVal" };
+      string x = test.GetXml();
+      PropertyMap t = new PropertyMap(x);
+      XmlSerializer xmlSerializer = new XmlSerializer(typeof(PropertyMap));
+      StringWriter textWriter = new StringWriter();
+
+
+      xmlSerializer.Serialize(textWriter, test);
+      string str = textWriter.ToString();
+      //string x = test.GetXml();
+    //{
+    //  do
+    //  {
+    //    TestRandomUtil();
+    //    Console.WriteLine("Press q to stop");
+    //  }
+    //  while (Console.Read() != 'q');
 		}
 	}
 }

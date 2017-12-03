@@ -7,7 +7,7 @@
         xmlns:views="clr-namespace:MafiaServerWPF.Views"
         xmlns:viewModels="clr-namespace:MafiaServerWPF.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Mafia" Height="350" Width="525">
 
     <Window.DataContext>
         <viewModels:ApplicationViewModel></viewModels:ApplicationViewModel>

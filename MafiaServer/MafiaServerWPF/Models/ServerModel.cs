@@ -11,7 +11,7 @@ using System.Xml.Serialization;
 using CommonUtils;
 namespace MafiaServerWPF.Models
 {
-	struct ConnectionInfo
+	public struct ConnectionInfo
 	{
 		public string Name;
 		public NetConnection Connection;
@@ -61,7 +61,8 @@ namespace MafiaServerWPF.Models
 				RunListener();
 				Debug.WriteLine("Server is listening");
 				Status = "Server is listening for connections";
-				ServerStarted?.Invoke(null, null);
+				if (ServerStarted != null)
+          ServerStarted.Invoke(null, null);
 				return true;
 			}
 			catch (Exception ex)
@@ -76,11 +77,12 @@ namespace MafiaServerWPF.Models
 		{
 			if (status == NetConnectionStatus.Connected)
 			{
-				string name = connection.RemoteHailMessage.ReadString();
+        string name = connection.RemoteHailMessage.ReadString();
 				Output(name + " @" + connection.RemoteEndPoint + " has connected");
 				ConnectionInfo info = new ConnectionInfo { Name = name, Connection = connection };
 				_connectionInfoList.Add(info);
-				PlayerJoined?.Invoke(info, null);
+				if (PlayerJoined != null)
+          PlayerJoined.Invoke(info, null);
 				
 			}
 			else if (status == NetConnectionStatus.Disconnected)
@@ -88,7 +90,8 @@ namespace MafiaServerWPF.Models
 				ConnectionInfo info = _connectionInfoList.Find((x) => { return x.Connection == connection; });
 				Output(info.Name + " @" + connection.RemoteEndPoint + " has disconnected");
 				_connectionInfoList.Remove(info);
-				PlayerLeft?.Invoke(info, null);
+				if (PlayerLeft != null)
+          PlayerLeft.Invoke(info, null);
 				// _connectionInfoList.RemoveAll((x)=> { return x.Connection == connection;});
 			}
 
@@ -102,7 +105,14 @@ namespace MafiaServerWPF.Models
 			}
 
 		}
-
+    public void SendMessage(NetConnection con,  string action, string data)
+    {
+      NetOutgoingMessage om = _server.CreateMessage();
+      string message = new KeyValue<string>() { key = action, value = data }.GetXml();
+      om.Write(message);
+      _server.SendMessage(om, con, NetDeliveryMethod.ReliableOrdered);
+      _server.FlushSendQueue();
+    }
 		void Output(string txt)
 		{
 			Debug.WriteLine(txt);

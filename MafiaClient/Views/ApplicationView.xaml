@@ -8,8 +8,11 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
-        <DataTemplate DataType="{x:Type ViewModels:MafiaClientViewModel}">
+        <DataTemplate DataType="{x:Type ViewModels:ClientLoginViewModel}">
             <Views:ClientLogin></Views:ClientLogin>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type ViewModels:VillagerViewModel}">
+            <Views:VillagerView></Views:VillagerView>
         </DataTemplate>
     </UserControl.Resources>
     <Grid>

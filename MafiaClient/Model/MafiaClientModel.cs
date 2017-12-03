@@ -5,6 +5,8 @@ using CommonUtils;
 
 namespace MafiaClient.Model
 {
+  public delegate void RoleSetEventHandler(object sender, EventArgs args);
+
 	public class MafiaClientModel
   {
     private NetClient _client;
@@ -14,6 +16,7 @@ namespace MafiaClient.Model
     public string _name = "lazybum";
 		private JavaScriptSerializer _jSerializer;
     public  string StatusMessage;
+    public event RoleSetEventHandler RoleSetEvent;
     public MafiaClientModel()
     {
       _config = new NetPeerConfiguration("Mafia");
@@ -24,6 +27,10 @@ namespace MafiaClient.Model
 			_jSerializer.MaxJsonLength = Int32.MaxValue;
 		}
 
+    public string Name
+    {
+      get { return _name; }
+    }
     
     public bool Connect(string host, Action<string, int> callback)
     {
@@ -47,6 +54,25 @@ namespace MafiaClient.Model
 
     }
 
+    void ProcessMessage(string data)
+    {
+      KeyValue<string> x = new KeyValue<string>(data);
+      if (String.Compare(x.key, "Role", true) == 0)
+      {
+        if (RoleSetEvent != null)
+        {
+          RoleSetEvent.Invoke(x.value, null);
+          return;
+        }
+      }
+      if (String.Compare(x.key, "ChatMessage", true) == 0)
+      {
+        KeyValue<string> messageKV = new KeyValue<string>(x.value);
+
+        
+
+      }
+    }
     public void SendMessage(string action, string data)
     {
       NetOutgoingMessage om = _client.CreateMessage();
@@ -96,8 +122,14 @@ namespace MafiaClient.Model
 
             break;
           case NetIncomingMessageType.Data:
-            string chat = im.ReadString();
-            OnMessage(chat);
+            ProcessMessage(im.ReadString());
+            string data = im.ReadString();
+            if (!String.IsNullOrEmpty(data))
+            {
+              KeyValue<string> x = new KeyValue<string>(data);
+              OnMessage("data from client - key:" + x.key + " value:" + x.value);
+            }
+            //OnMessage(chat);
             break;
           default:
             OnMessage("Unhandled type: " + im.MessageType + " " + im.LengthBytes + " bytes");

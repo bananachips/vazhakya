@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-
-namespace TestWPF.ViewModels
+using CommonUtils;
+namespace MafiaClient.ViewModel
 {
-    class RedVM
-    {
-    }
+  class VillagerViewModel: BaseViewModel
+  {
+  }
 }

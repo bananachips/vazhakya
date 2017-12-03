@@ -59,9 +59,21 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ViewModel\MafiaClientViewModel.cs" />
+    <Compile Include="ViewModel\ApplicationViewModel.cs" />
+    <Compile Include="ViewModel\ChatViewModel.cs" />
+    <Compile Include="ViewModel\ClientLoginViewModel.cs" />
+    <Compile Include="ViewModel\VillagerViewModel.cs" />
+    <Compile Include="Views\ApplicationView.xaml.cs">
+      <DependentUpon>ApplicationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ChatView.xaml.cs">
+      <DependentUpon>ChatView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ClientLogin.xaml.cs">
       <DependentUpon>ClientLogin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VillagerView.xaml.cs">
+      <DependentUpon>VillagerView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -75,7 +87,19 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\ApplicationView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ChatView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ClientLogin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\VillagerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
